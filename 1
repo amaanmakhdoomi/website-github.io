@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Device Hacked</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: black;
+            color: red;
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        .warning {
+            font-size: 2.5em;
+            font-weight: bold;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        p {
+            font-size: 1.5em;
+        }
+
+        #progressBar {
+            width: 80%;
+            background-color: grey;
+            margin: 50px auto;
+            height: 30px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        #progress {
+            height: 100%;
+            width: 0;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Fake Warning Messages -->
+    <h1 class="warning">Warning: Your Device is Hacked!</h1>
+    <p>All of your files are being encrypted...</p>
+
+    <!-- Fake Progress Bar -->
+    <div id="progressBar">
+        <div id="progress"></div>
+    </div>
+
+    <!-- Fake Alerts Repeatedly Using JavaScript -->
+    <script>
+        // Function to load progress bar automatically
+        function moveProgressBar() {
+            var progressElem = document.getElementById("progress");
+            var width = 0;
+            var interval = setInterval(function() {
+                if (width >= 100) {
+                    clearInterval(interval);
+                } else {
+                    width++;
+                    progressElem.style.width = width + '%';
+                }
+            }, 50);  // Adjust the speed (50ms per 1% width increment)
+        }
+
+        // Start progress bar loading when page loads
+        window.onload = moveProgressBar;
+
+        // Function to display repeated alerts until prank ends
+        function showRepeatedAlerts() {
+            var alertMessages = [
+                "Your device is under hacker control!",
+                "Disconnect immediately!",
+                "All your files are being accessed!",
+                "Critical system breach detected!",
+                "Shutting down in 5 seconds..."
+            ];
+            
+            let messageIndex = 0;
+            // Interval for showing repeated alerts every 3 seconds
+            var alertInterval = setInterval(function() {
+                if (messageIndex >= alertMessages.length) {
+                    messageIndex = 0;  // Reset the index to loop through messages again
+                }
+                alert(alertMessages[messageIndex]);
+                messageIndex++;
+            }, 3000);  // Change this value for longer/shorter intervals (3000 ms = 3 seconds)
+
+            // Stop the alerts after 15 seconds when prank redirects
+            setTimeout(function() {
+                clearInterval(alertInterval);
+            }, 15000);  // Stops alerts after 15 seconds
+        }
+
+        // Start showing repeated alerts when page loads
+        window.onload = function() {
+            moveProgressBar();  // Start the progress bar animation
+            showRepeatedAlerts();  // Start showing repeated alerts
+        };
+    </script>
+
+    <!-- Audio that plays automatically -->
+    <audio autoplay>
+        <source src="your-audio-file.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Redirect to a "prank reveal" page after 15 seconds -->
+    <script>
+        setTimeout(function() {
+            window.location.href = "prank_reveal.html";
+        }, 15000);  // Redirect after 15 seconds
+    </script>
+
+</body>
+</html>
